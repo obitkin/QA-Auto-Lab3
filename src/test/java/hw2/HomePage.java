@@ -13,7 +13,8 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        this.driver = driver; }
+        this.driver = driver;
+    }
 
     @FindBy(id = "name")
     private WebElement loginField;
@@ -22,7 +23,7 @@ public class HomePage {
     private WebElement passwdField;
 
     @FindBy(css = "#user-icon")
-    private WebElement logiPasswdMenu;
+    private WebElement loginPasswdMenu;
 
     @FindBy(css = "#login-button")
     private WebElement loginBtn;
@@ -46,10 +47,25 @@ public class HomePage {
     public void inputPasswd(String passwd) {
         passwdField.sendKeys(passwd);
     }
+
     /**
      * метод для осуществления нажатия кнопки входа в аккаунт
      */
     public void clickLoginBtn() {
         loginBtn.click();
+    }
+
+    /**
+     * метод для осуществления открытия меню ввода логина и пароля
+     */
+    public void openMenu() {
+        loginPasswdMenu.click();
+    }
+
+    /**
+     * метод для чтения заголовка страницы
+     */
+    public String getTitle() {
+        return driver.getTitle();
     }
 }
