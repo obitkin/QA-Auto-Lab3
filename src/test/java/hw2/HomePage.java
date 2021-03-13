@@ -49,6 +49,9 @@ public class HomePage {
     @FindBy(css = ".main-title")
     private WebElement mainTitle;
 
+    @FindBy(css = ".main-txt")
+    private WebElement mainText;
+
     /**
      * метод для ввода логина
      */
@@ -117,5 +120,12 @@ public class HomePage {
      */
     public WebElement getMainTitle() {
         return mainTitle;
+    }
+
+    /**
+     * метод для нахождения главного подзаголовка
+     */
+    public WebElement getMainText() {
+        return mainText;
     }
 }

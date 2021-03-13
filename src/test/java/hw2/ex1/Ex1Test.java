@@ -22,6 +22,7 @@ public class Ex1Test {
     String name = "ROMAN IOVLEV";
     String title = "Home Page";
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+    int expectedImages = 4;
     List<String> textOfImages = Arrays.asList(
             "To include good practices\n" +
                     "and ideas from successful\n" +
@@ -34,7 +35,11 @@ public class Ex1Test {
                     "some external projects),\n" +
                     "wish to get more…");
     String mainTitle = "EPAM FRAMEWORK WISHES…";
-    int expectedImages = 4;
+    String mainText = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+            "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. " +
+            "UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI " +
+            "UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
+            "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
 
     HomePage homePage;
     WebDriver driver;
@@ -134,6 +139,7 @@ public class Ex1Test {
     @Test(priority = 9)
     public void assertTextOfMainHeaders() {
         Assert.assertEquals(homePage.getMainTitle().getText(), mainTitle);
+        Assert.assertEquals(homePage.getMainText().getText(), mainText);
     }
 
     @AfterClass
