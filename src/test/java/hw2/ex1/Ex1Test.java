@@ -22,6 +22,18 @@ public class Ex1Test {
     String name = "ROMAN IOVLEV";
     String title = "Home Page";
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+    List<String> textOfImages = Arrays.asList(
+            "To include good practices\n" +
+                    "and ideas from successful\n" +
+                    "EPAM project",
+            "To be flexible and\n" +
+                    "customizable",
+            "To be multiplatform",
+            "Already have good base\n" +
+                    "(about 20 internal and\n" +
+                    "some external projects),\n" +
+                    "wish to get more…");
+
     int expectedImages = 4;
 
     HomePage homePage;
@@ -36,7 +48,15 @@ public class Ex1Test {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    /**
+     *  1. Open test site by URL
+     */
+    @Test(priority = 1)
+    public void openSiteTest() {
         driver.get(url);
+        Assert.assertEquals(driver.getCurrentUrl(),url);
     }
 
     /**
@@ -101,7 +121,11 @@ public class Ex1Test {
      */
     @Test(priority = 8)
     public void assertTextOfImages() {
-        Assert.assertEquals(homePage.getTextOfImages().size(),expectedImages);
+        Assert.assertEquals(homePage.getTextOfImages().size(), textOfImages.size());
+        homePage.getTextOfImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
+        Assert.assertEquals(
+                homePage.getTextOfImages().stream().map(WebElement::getText).toArray(),
+                textOfImages.toArray());
     }
 
 
