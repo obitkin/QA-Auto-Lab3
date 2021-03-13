@@ -22,6 +22,7 @@ public class Ex1Test {
     String name = "ROMAN IOVLEV";
     String title = "Home Page";
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+    int expectedImages = 4;
 
     HomePage homePage;
     WebDriver driver;
@@ -84,6 +85,23 @@ public class Ex1Test {
         Assert.assertEquals(
                 homePage.getHeaderSectionNavigation().stream().map(WebElement::getText).toArray(),
                 navigation.toArray());
+    }
+
+    /**
+     *  7. Assert that there are 4 images on the Index Page and they are displayed
+     */
+    @Test(priority = 7)
+    public void assertImages() {
+        Assert.assertEquals(homePage.getImages().size(),expectedImages);
+        homePage.getImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
+    }
+
+    /**
+     *  8. Assert that there are 4 texts on the Index Page under icons and they have proper text
+     */
+    @Test(priority = 8)
+    public void assertTextOfImages() {
+        Assert.assertEquals(homePage.getTextOfImages().size(),expectedImages);
     }
 
 
