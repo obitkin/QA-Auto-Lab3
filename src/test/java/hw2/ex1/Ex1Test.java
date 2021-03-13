@@ -33,7 +33,7 @@ public class Ex1Test {
                     "(about 20 internal and\n" +
                     "some external projects),\n" +
                     "wish to get more…");
-
+    String mainTitle = "EPAM FRAMEWORK WISHES…";
     int expectedImages = 4;
 
     HomePage homePage;
@@ -128,7 +128,13 @@ public class Ex1Test {
                 textOfImages.toArray());
     }
 
-
+    /**
+     *  9. Assert a text of the main headers
+     */
+    @Test(priority = 9)
+    public void assertTextOfMainHeaders() {
+        Assert.assertEquals(homePage.getMainTitle().getText(), mainTitle);
+    }
 
     @AfterClass
     public void tearDown() {

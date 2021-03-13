@@ -46,6 +46,9 @@ public class HomePage {
     @FindBy(css = "div.benefit span.benefit-txt")
     private List<WebElement> textOfImages;
 
+    @FindBy(css = ".main-title")
+    private WebElement mainTitle;
+
     /**
      * метод для ввода логина
      */
@@ -107,5 +110,12 @@ public class HomePage {
      */
     public List<WebElement> getTextOfImages() {
         return textOfImages;
+    }
+
+    /**
+     * метод для нахождения главного заголовка
+     */
+    public WebElement getMainTitle() {
+        return mainTitle;
     }
 }
