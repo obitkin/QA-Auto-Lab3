@@ -68,4 +68,11 @@ public class HomePage {
     public String getTitle() {
         return driver.getTitle();
     }
+
+    /**
+     * метод для чтения заголовка страницы
+     */
+    public String getName() {
+        return name.getAttribute("innerText");
+    }
 }
