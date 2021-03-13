@@ -25,10 +25,10 @@ public class HomePage {
     @FindBy(id = "password")
     private WebElement passwdField;
 
-    @FindBy(css = "#user-icon")
+    @FindBy(id = "user-icon")
     private WebElement loginPasswdMenu;
 
-    @FindBy(css = "#login-button")
+    @FindBy(id = "login-button")
     private WebElement loginBtn;
 
     @FindBy(tagName = "title")
@@ -39,6 +39,12 @@ public class HomePage {
 
     @FindBy(css = "ul.nav>li>a")
     private List<WebElement> navigation;
+
+    @FindBy(css = "div.benefit div.benefit-icon")
+    private List<WebElement> images;
+
+    @FindBy(css = "div.benefit span.benefit-txt")
+    private List<WebElement> textOfImages;
 
     /**
      * метод для ввода логина
@@ -87,5 +93,19 @@ public class HomePage {
      */
     public List<WebElement> getHeaderSectionNavigation() {
         return navigation;
+    }
+
+    /**
+     * метод для нахождения изображений
+     */
+    public List<WebElement> getImages() {
+        return images;
+    }
+
+    /**
+     * метод для нахождения текста изображений
+     */
+    public List<WebElement> getTextOfImages() {
+        return textOfImages;
     }
 }
