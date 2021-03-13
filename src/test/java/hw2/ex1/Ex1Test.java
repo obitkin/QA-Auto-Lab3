@@ -2,12 +2,16 @@ package hw2.ex1;
 
 import hw2.HomePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Ex1Test {
@@ -17,6 +21,7 @@ public class Ex1Test {
     String passwd = "Jdi1234";
     String name = "ROMAN IOVLEV";
     String title = "Home Page";
+    List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     HomePage homePage;
     WebDriver driver;
@@ -72,9 +77,16 @@ public class Ex1Test {
      *  6. Assert that there are 4 items on the header section are displayed and they have proper texts
      */
     @Test(priority = 6)
-    public void assertNavigation4ItemTest() {
-        Assert.assertEquals(homePage.getName(),name);
+    public void assertHeaderSectionNavigation() {
+        Assert.assertEquals(
+                homePage.getHeaderSectionNavigation().size(),
+                navigation.size());
+        Assert.assertEquals(
+                homePage.getHeaderSectionNavigation().stream().map(WebElement::getText).toArray(),
+                navigation.toArray());
     }
+
+
 
     @AfterClass
     public void tearDown() {
