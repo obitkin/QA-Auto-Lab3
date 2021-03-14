@@ -1,6 +1,5 @@
 package hw2;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,14 +30,11 @@ public class HomePage {
     @FindBy(id = "login-button")
     private WebElement loginBtn;
 
-    @FindBy(tagName = "title")
-    private WebElement title;
-
     @FindBy(id = "user-name")
     private WebElement name;
 
     @FindBy(css = "ul.nav>li>a")
-    private List<WebElement> navigation;
+    private List<WebElement> navigationTop;
 
     @FindBy(css = "div.benefit div.benefit-icon")
     private List<WebElement> images;
@@ -51,6 +47,9 @@ public class HomePage {
 
     @FindBy(css = ".main-txt")
     private WebElement mainText;
+
+    @FindBy(id = "second_frame")
+    private WebElement centralFrame;
 
     /**
      * метод для ввода логина
@@ -88,7 +87,7 @@ public class HomePage {
     }
 
     /**
-     * метод для чтения заголовка страницы
+     * метод для чтения имени пользователя
      */
     public String getName() {
         return name.getAttribute("innerText");
@@ -98,7 +97,7 @@ public class HomePage {
      * метод для нахождения 4-х навигационных элементов в хедере
      */
     public List<WebElement> getHeaderSectionNavigation() {
-        return navigation;
+        return navigationTop;
     }
 
     /**
@@ -127,5 +126,24 @@ public class HomePage {
      */
     public WebElement getMainText() {
         return mainText;
+    }
+
+    /**
+     * метод для нахождения центрального(2-го по середине) фрейма в виде WebElement
+     */
+    public WebElement getCentralFrameWebElement() {
+        return centralFrame;
+    }
+
+    class CentralFrame {
+
+    }
+
+    /**
+     * метод для нахождения центрального(2-го по середине) фрейма
+     */
+    public CentralFrame getCentralFrame() {
+        driver.switchTo().frame(getCentralFrameWebElement());
+        return new CentralFrame();
     }
 }
