@@ -75,19 +75,46 @@ public class Ex2Test {
      *  5. Click on "Service" subcategory in the header and check that drop down contains options
      */
     @Test(priority = 5)
-    public void assertBrowse() {
-        homePage.getService().click();
+    public void assertServiceInHeader() {
+        homePage.getServiceTop().click();
         serviceList
                 .forEach(
                         x -> Assert.assertTrue(
                                 homePage
-                                .getServiceList()
+                                .getServiceListTop()
                                 .stream()
                                 .map(WebElement::getText)
                                 .collect(Collectors.toList())
                                 .contains(x)
                         )
                 );
+    }
+
+    /**
+     *  6. Click on Service subcategory in the left section and check that drop down contains options
+     */
+    @Test(priority = 6)
+    public void ServiceOnLeft() {
+        homePage.getServiceLeft().click();
+        serviceList
+                .forEach(
+                        x -> Assert.assertTrue(
+                                homePage
+                                        .getServiceListLeft()
+                                        .stream()
+                                        .map(WebElement::getText)
+                                        .collect(Collectors.toList())
+                                        .contains(x)
+                        )
+                );
+    }
+
+    /**
+     *  7. Open through the header menu Service -> Different Elements Page
+     */
+    @Test(priority = 7)
+    public void openNewServicePage() {
+        homePage.goToServiceElement("Different elements");
     }
 
     @AfterTest

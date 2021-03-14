@@ -62,7 +62,10 @@ public class HomePage {
     private WebElement footer;
 
     @FindBy(css = "ul.nav .dropdown")
-    private WebElement service;
+    private WebElement serviceTop;
+
+    @FindBy(css = "li.menu-title[index=\"3\"]")
+    private WebElement serviceLeft;
 
     /**
      * метод для ввода логина
@@ -207,14 +210,36 @@ public class HomePage {
     /**
      * метод для получения элемента Service из хедера
      */
-    public WebElement getService() {
-        return service;
+    public WebElement getServiceTop() {
+        return serviceTop;
     }
 
     /**
      * метод для получения выпадающего списка Service из хедера
      */
-    public List<WebElement> getServiceList() {
-        return getService().findElements(By.cssSelector(".dropdown-menu li"));
+    public List<WebElement> getServiceListTop() {
+        return getServiceTop().findElements(By.cssSelector(".dropdown-menu li"));
+    }
+
+    /**
+     * метод для получения элемента Service из левого блока
+     */
+    public WebElement getServiceLeft() {
+        return serviceLeft;
+    }
+
+    /**
+     * метод для получения выпадающего списка Service из левого блока
+     */
+    public List<WebElement> getServiceListLeft() {
+        return getServiceLeft().findElements(By.className("li"));
+    }
+
+    /**
+     * метод для получения выпадающего списка Service из левого блока
+     */
+    public void goToServiceElement(String serviceListElement) {
+        getServiceTop().click();
+        getServiceTop().findElement(By.cssSelector("a[href=\"different-elements.html\"]")).click();
     }
 }
