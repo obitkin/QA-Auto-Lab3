@@ -1,5 +1,6 @@
 package hw2;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,7 +61,7 @@ public class HomePage {
     @FindBy(tagName = "footer")
     private WebElement footer;
 
-    @FindBy(tagName = "ul.nav .dropdown")
+    @FindBy(css = "ul.nav .dropdown")
     private WebElement service;
 
     /**
@@ -208,5 +209,12 @@ public class HomePage {
      */
     public WebElement getService() {
         return service;
+    }
+
+    /**
+     * метод для получения выпадающего списка Service из хедера
+     */
+    public List<WebElement> getServiceList() {
+        return getService().findElements(By.cssSelector(".dropdown-menu li"));
     }
 }
