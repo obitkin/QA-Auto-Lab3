@@ -3,6 +3,7 @@ package hw2.ex2;
 import hw2.HomePage;
 import hw2.ex1.LoginTest;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,11 +11,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class Ex2Test {
 
     String url = "https://jdi-testing.github.io/jdi-light/index.html";
+
+    List<String> serviceList = Arrays.asList("Support", "Dates", "Complex Table", "Simple Table", "Tables With Pages", "Different Elements");
 
     WebDriver driver;
     HomePage homePage;
@@ -70,7 +76,18 @@ public class Ex2Test {
      */
     @Test(priority = 5)
     public void assertBrowse() {
-
+        homePage.getService().click();
+        serviceList
+                .forEach(
+                        x -> Assert.assertTrue(
+                                homePage
+                                .getServiceList()
+                                .stream()
+                                .map(WebElement::getText)
+                                .collect(Collectors.toList())
+                                .contains(x)
+                        )
+                );
     }
 
     @AfterTest
