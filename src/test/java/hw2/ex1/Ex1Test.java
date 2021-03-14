@@ -5,11 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -17,10 +15,9 @@ import java.util.concurrent.TimeUnit;
 public class Ex1Test {
 
     String url = "https://jdi-testing.github.io/jdi-light/index.html";
-    String login = "Roman";
-    String passwd = "Jdi1234";
-    String name = "ROMAN IOVLEV";
-    String title = "Home Page";
+
+    LoginTest loginTest;
+
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
     int expectedImages = 4;
     List<String> textOfImages = Arrays.asList(
@@ -52,6 +49,7 @@ public class Ex1Test {
 
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
+        loginTest = new LoginTest(homePage);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -71,7 +69,7 @@ public class Ex1Test {
      */
     @Test(priority = 2)
     public void assertBrowserTitleTest() {
-        Assert.assertEquals(homePage.getTitle(),title);
+        loginTest.assertBrowserTitleTest();
     }
 
     /**
@@ -79,10 +77,7 @@ public class Ex1Test {
      */
     @Test(priority = 3)
     public void performLoginTest() {
-        homePage.openMenu();
-        homePage.inputLogin(login);
-        homePage.inputPasswd(passwd);
-        homePage.clickLoginBtn();
+        loginTest.performLoginTest();
     }
 
     /**
@@ -90,7 +85,7 @@ public class Ex1Test {
      */
     @Test(priority = 4)
     public void assertUserNameTest() {
-        Assert.assertEquals(homePage.getName(),name);
+        loginTest.assertUserNameTest();
     }
 
     /**
@@ -98,7 +93,7 @@ public class Ex1Test {
      */
     @Test(priority = 5)
     public void assertBrowserTitleTest2() {
-        assertBrowserTitleTest();
+        loginTest.assertBrowserTitleTest();
     }
 
     /**
