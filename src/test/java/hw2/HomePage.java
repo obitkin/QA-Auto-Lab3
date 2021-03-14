@@ -126,15 +126,15 @@ public class HomePage {
     /**
      * метод для нахождения главного заголовка
      */
-    public WebElement getMainTitle() {
-        return mainTitle;
+    public String getMainTitle() {
+        return mainTitle.getText();
     }
 
     /**
      * метод для нахождения главного текста
      */
-    public WebElement getMainText() {
-        return mainText;
+    public String getMainText() {
+        return mainText.getText();
     }
 
     /**

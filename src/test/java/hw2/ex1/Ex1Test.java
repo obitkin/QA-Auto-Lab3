@@ -40,6 +40,8 @@ public class Ex1Test {
             "UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI " +
             "UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
             "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
+    String subHeader = "JDI GITHUB";
+    String JDI_GITHUB_URL = "https://jdi-testing.github.io/jdi-light/index.html";
 
     HomePage homePage;
     WebDriver driver;
@@ -142,8 +144,8 @@ public class Ex1Test {
      */
     @Test(priority = 9)
     public void assertTextOfMainHeaders() {
-        Assert.assertEquals(homePage.getMainTitle().getText(), mainTitle);
-        Assert.assertEquals(homePage.getMainText().getText(), mainText);
+        Assert.assertEquals(homePage.getMainTitle(), mainTitle);
+        Assert.assertEquals(homePage.getMainText(), mainText);
     }
 
     /**
@@ -160,7 +162,6 @@ public class Ex1Test {
      */
     @Test(priority = 11)
     public void assertEpamLogoInFrame() {
-        Assert.assertNotNull(homePage.getCentralFrameWebElement());
         Assert.assertTrue(homePage.getCentralFrameWebElement().isDisplayed());
         Assert.assertNotNull(homePage.getCentralFrame().getLogo());
     }
@@ -178,7 +179,7 @@ public class Ex1Test {
      */
     @Test(priority = 13)
     public void assertTextSubHeader() {
-        Assert.assertEquals(homePage.getSubHeader().getText(),"JDI GITHUB");
+        Assert.assertEquals(homePage.getSubHeader().getText(),subHeader);
     }
 
     /**
@@ -187,7 +188,7 @@ public class Ex1Test {
     @Test(priority = 14)
     public void assertLinkSubHeader() {
         Assert.assertTrue(homePage.getSubHeader().isDisplayed());
-        Assert.assertEquals(homePage.getSubHeader().getAttribute("href"),"https://jdi-testing.github.io/jdi-light/index.html");
+        Assert.assertEquals(homePage.getSubHeader().getAttribute("href"),JDI_GITHUB_URL);
     }
 
     /**
