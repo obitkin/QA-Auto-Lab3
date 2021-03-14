@@ -36,10 +36,10 @@ public class HomePage {
     @FindBy(css = "ul.nav>li>a")
     private List<WebElement> navigationTop;
 
-    @FindBy(css = "div.benefit div.benefit-icon")
+    @FindBy(css = "div.benefit-icon")
     private List<WebElement> images;
 
-    @FindBy(css = "div.benefit span.benefit-txt")
+    @FindBy(css = "span.benefit-txt")
     private List<WebElement> textOfImages;
 
     @FindBy(className = "main-title")
@@ -59,6 +59,9 @@ public class HomePage {
 
     @FindBy(tagName = "footer")
     private WebElement footer;
+
+    @FindBy(tagName = "ul.nav .dropdown")
+    private WebElement service;
 
     /**
      * метод для ввода логина
@@ -86,6 +89,16 @@ public class HomePage {
      */
     public void openMenu() {
         loginPasswdMenu.click();
+    }
+
+    /**
+     * метод для входа в аккаунт
+     */
+    public void signInWithoutClear(String login, String passwd) {
+        loginPasswdMenu.click();
+        loginField.sendKeys(login);
+        passwdField.sendKeys(passwd);
+        loginBtn.click();
     }
 
     /**
@@ -188,5 +201,12 @@ public class HomePage {
      */
     public void quit() {
         driver.quit();
+    }
+
+    /**
+     * метод для получения элемента Service из хедера
+     */
+    public WebElement getService() {
+        return service;
     }
 }
