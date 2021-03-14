@@ -117,7 +117,9 @@ public class Ex1Test {
      */
     @Test(priority = 7)
     public void assertImages() {
-        Assert.assertEquals(homePage.getImages().size(),expectedImages);
+        Assert.assertEquals(
+                homePage.getImages().size(),
+                expectedImages);
         homePage.getImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
     }
 
@@ -126,7 +128,9 @@ public class Ex1Test {
      */
     @Test(priority = 8)
     public void assertTextOfImages() {
-        Assert.assertEquals(homePage.getTextOfImages().size(), textOfImages.size());
+        Assert.assertEquals(
+                homePage.getTextOfImages().size(),
+                textOfImages.size());
         homePage.getTextOfImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
         Assert.assertEquals(
                 homePage.getTextOfImages().stream().map(WebElement::getText).toArray(),
@@ -169,8 +173,45 @@ public class Ex1Test {
         homePage.getBackFromFrameToDefault();
     }
 
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
+    /**
+     *  13. Assert a text of the sub header
+     */
+    @Test(priority = 13)
+    public void assertTextSubHeader() {
+        Assert.assertEquals(homePage.getSubHeader().getText(),"JDI GITHUB");
     }
+
+    /**
+     *  14. Assert that JDI GITHUB is a link and has a proper URL
+     */
+    @Test(priority = 14)
+    public void assertLinkSubHeader() {
+        Assert.assertTrue(homePage.getSubHeader().isDisplayed());
+        Assert.assertEquals(homePage.getSubHeader().getAttribute("href"),"https://jdi-testing.github.io/jdi-light/index.html");
+    }
+
+    /**
+     *  15. Assert that there is Left Section
+     */
+    @Test(priority = 15)
+    public void assertLeftSection() {
+        Assert.assertTrue(homePage.getSideBarMenu().isDisplayed());
+    }
+
+    /**
+     *  16. Assert that there is Footer
+     */
+    @Test(priority = 16)
+    public void assertFooter() {
+        Assert.assertTrue(homePage.getFooter().isDisplayed());
+    }
+
+    /**
+     *  17. Assert that there is Footer
+     */
+    @Test(priority = 17)
+    public void assertQuit() {
+        homePage.quit();
+    }
+
 }
