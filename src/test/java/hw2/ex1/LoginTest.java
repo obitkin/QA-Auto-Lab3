@@ -12,7 +12,7 @@ public class LoginTest {
 
     HomePage homePage;
 
-    LoginTest(HomePage homePage) {
+    public LoginTest(HomePage homePage) {
         this.homePage = homePage;
     }
 
@@ -21,10 +21,7 @@ public class LoginTest {
     }
 
     public void performLoginTest() {
-        homePage.openMenu();
-        homePage.inputLogin(login);
-        homePage.inputPasswd(passwd);
-        homePage.clickLoginBtn();
+        homePage.signInWithoutClear(login,passwd);
     }
 
     public void assertUserNameTest() {
