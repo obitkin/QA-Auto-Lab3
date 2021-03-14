@@ -135,15 +135,21 @@ public class HomePage {
         return centralFrame;
     }
 
-    class CentralFrame {
-
-    }
-
+    HomeFrame homeCentralFrame;
     /**
      * метод для нахождения центрального(2-го по середине) фрейма
      */
-    public CentralFrame getCentralFrame() {
+    public HomeFrame getCentralFrame() {
         driver.switchTo().frame(getCentralFrameWebElement());
-        return new CentralFrame();
+        return (homeCentralFrame == null)
+                ? homeCentralFrame = new HomeFrame(driver)
+                : homeCentralFrame;
+    }
+
+    /**
+     * метод для выхода из фрейма
+     */
+    public void getBackFromFrameToDefault() {
+        driver.switchTo().defaultContent();
     }
 }

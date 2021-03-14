@@ -158,6 +158,15 @@ public class Ex1Test {
     public void assertEpamLogoInFrame() {
         Assert.assertNotNull(homePage.getCentralFrameWebElement());
         Assert.assertTrue(homePage.getCentralFrameWebElement().isDisplayed());
+        Assert.assertNotNull(homePage.getCentralFrame().getLogo());
+    }
+
+    /**
+     *  12. Switch to original window back
+     */
+    @Test(priority = 12)
+    public void getToDefault() {
+        homePage.getBackFromFrameToDefault();
     }
 
     @AfterClass
