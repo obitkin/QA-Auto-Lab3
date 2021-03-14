@@ -96,7 +96,7 @@ public class Ex1Test {
      */
     @Test(priority = 5)
     public void assertBrowserTitleTest2() {
-        Assert.assertEquals(homePage.getName(),name);
+        assertBrowserTitleTest();
     }
 
     /**
@@ -140,6 +140,24 @@ public class Ex1Test {
     public void assertTextOfMainHeaders() {
         Assert.assertEquals(homePage.getMainTitle().getText(), mainTitle);
         Assert.assertEquals(homePage.getMainText().getText(), mainText);
+    }
+
+    /**
+     *  10. Assert that there is the iframe in the center of page
+     */
+    @Test(priority = 10)
+    public void assertIframeInCenter() {
+        Assert.assertNotNull(homePage.getCentralFrameWebElement());
+        Assert.assertTrue(homePage.getCentralFrameWebElement().isDisplayed());
+    }
+
+    /**
+     *  11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
+     */
+    @Test(priority = 11)
+    public void assertEpamLogoInFrame() {
+        Assert.assertNotNull(homePage.getCentralFrameWebElement());
+        Assert.assertTrue(homePage.getCentralFrameWebElement().isDisplayed());
     }
 
     @AfterClass
