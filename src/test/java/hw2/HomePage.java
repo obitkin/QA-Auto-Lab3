@@ -42,14 +42,23 @@ public class HomePage {
     @FindBy(css = "div.benefit span.benefit-txt")
     private List<WebElement> textOfImages;
 
-    @FindBy(css = ".main-title")
+    @FindBy(className = "main-title")
     private WebElement mainTitle;
 
-    @FindBy(css = ".main-txt")
+    @FindBy(className = "main-txt")
     private WebElement mainText;
 
     @FindBy(id = "second_frame")
     private WebElement centralFrame;
+
+    @FindBy(css = ".text-center a")
+    private WebElement subHeader;
+
+    @FindBy(className = "sidebar-menu")
+    private WebElement sideBarMenu;
+
+    @FindBy(tagName = "footer")
+    private WebElement footer;
 
     /**
      * метод для ввода логина
@@ -122,7 +131,7 @@ public class HomePage {
     }
 
     /**
-     * метод для нахождения главного подзаголовка
+     * метод для нахождения главного текста
      */
     public WebElement getMainText() {
         return mainText;
@@ -151,5 +160,33 @@ public class HomePage {
      */
     public void getBackFromFrameToDefault() {
         driver.switchTo().defaultContent();
+    }
+
+    /**
+     * метод для выхода из фрейма
+     */
+    public WebElement getSubHeader() {
+        return subHeader;
+    }
+
+    /**
+     * метод для нахождения бокового меню
+     */
+    public WebElement getSideBarMenu() {
+        return sideBarMenu;
+    }
+
+    /**
+     * метод для нахождения footer'а
+     */
+    public WebElement getFooter() {
+        return footer;
+    }
+
+    /**
+     * метод для закрытия всех страниц и выхода
+     */
+    public void quit() {
+        driver.quit();
     }
 }
