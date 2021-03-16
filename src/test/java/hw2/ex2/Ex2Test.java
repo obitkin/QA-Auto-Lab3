@@ -114,6 +114,7 @@ public class Ex2Test {
      */
     @Test(priority = 7)
     public void openNewServicePage() {
+        //to do: return new DifferentElementsPage
         homePage.goToServiceElement("Different elements");
     }
 

@@ -236,10 +236,11 @@ public class HomePage {
     }
 
     /**
-     * метод для получения выпадающего списка Service из левого блока
+     * метод для перехода на  страницу serviceListElement в Service в хедере
      */
     public void goToServiceElement(String serviceListElement) {
         getServiceTop().click();
-        getServiceTop().findElement(By.cssSelector("a[href=\"different-elements.html\"]")).click();
+        //getServiceTop().findElement(By.cssSelector("a[href=\"different-elements.html\"]")).click();
+        getServiceTop().findElement(By.linkText(serviceListElement)).click();
     }
 }
