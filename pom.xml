@@ -26,6 +26,11 @@
       <artifactId>selenium-java</artifactId>
       <version>3.141.59</version>
     </dependency>
+    <dependency>
+      <groupId>ru.yandex.qatools.htmlelements</groupId>
+      <artifactId>htmlelements-java</artifactId>
+      <version>1.19</version>
+    </dependency>
   </dependencies>
 
   <build>
