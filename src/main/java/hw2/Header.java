@@ -10,7 +10,6 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 import java.util.List;
 
-@Name("Header")
 @FindBy(tagName = "header")
 public class Header extends HtmlElement {
 

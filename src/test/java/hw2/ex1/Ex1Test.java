@@ -16,7 +16,6 @@ public class Ex1Test {
 
     String url = "https://jdi-testing.github.io/jdi-light/index.html";
 
-    LoginTest loginTest;
 
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
     int expectedImages = 4;
@@ -40,8 +39,10 @@ public class Ex1Test {
     String subHeader = "JDI GITHUB";
     String JDI_GITHUB_URL = "https://jdi-testing.github.io/jdi-light/index.html";
 
+
+    private WebDriver driver;
     HomePage homePage;
-    WebDriver driver;
+    LoginTest loginTest;
 
     @BeforeClass
     public void setup() {
@@ -60,6 +61,7 @@ public class Ex1Test {
      */
     @Test(priority = 1)
     public void openSiteTest() {
+        System.setProperty("webdriver.chrome.driver", "/home/robert/IdeaProjects/AutoTestPolis/ChromeDriver/chromedriver");
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }

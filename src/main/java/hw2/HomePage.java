@@ -19,7 +19,8 @@ public class HomePage {
     Header header;
 
     public HomePage(WebDriver driver) {
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)),this);
+        //PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
         this.driver = driver;
     }
 
@@ -46,7 +47,6 @@ public class HomePage {
 
     @FindBy(tagName = "footer")
     private WebElement footer;
-
 
     @FindBy(css = "li.menu-title[index=\"3\"]")
     private WebElement serviceLeft;
@@ -161,4 +161,38 @@ public class HomePage {
         return getServiceLeft().findElements(By.className("li"));
     }
 
+    /**
+     * метод для чтения имени пользователя
+     */
+    public String getName() {
+        return header.getName();
+    }
+
+    /**
+     * метод для нахождения 4-х навигационных элементов в хедере
+     */
+    public List<WebElement> getHeaderSectionNavigation() {
+        return header.getHeaderSectionNavigation();
+    }
+
+    /**
+     * метод для получения элемента Service из хедера
+     */
+    public WebElement getServiceTop() {
+        return header.getServiceTop();
+    }
+
+    /**
+     * метод для получения выпадающего списка Service из хедера
+     */
+    public List<WebElement> getServiceListTop() {
+        return getServiceTop().findElements(By.cssSelector(".dropdown-menu li"));
+    }
+
+    /**
+     * метод для перехода на  страницу serviceListElement в Service в хедере
+     */
+    public void goToServiceElement(String serviceListElement) {
+        header.goToServiceElement(serviceListElement);
+    }
 }
