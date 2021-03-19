@@ -19,6 +19,7 @@ public class HomePage {
     public WebDriver driver;
 
     public Header header;
+    HomeFrame homeCentralFrame;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)),this);
@@ -51,14 +52,6 @@ public class HomePage {
 
     @FindBy(css = "li.menu-title[index=\"3\"]")
     private WebElement serviceLeft;
-
-
-    /**
-     * метод для входа в аккаунт
-     */
-    public void signInWithoutClear(String login, String passwd) {
-        header.signInWithoutClear(login, passwd);
-    }
 
     /**
      * метод для чтения заголовка страницы
@@ -102,7 +95,6 @@ public class HomePage {
         return centralFrame;
     }
 
-    HomeFrame homeCentralFrame;
     /**
      * метод для нахождения центрального(2-го по середине) фрейма
      */
