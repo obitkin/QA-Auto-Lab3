@@ -99,18 +99,6 @@ public class Ex1Test {
         loginTest.assertBrowserTitleTest();
     }
 
-//    /**
-//     *  5. Assert Browser title
-//     */
-//    @Test(priority = 6)
-//    public void MyTest() {
-//        WebElement w = homePage.header.getNavigationElement("SERVICE");
-//        System.out.println(w.getText());
-//        w.click();
-//        w = homePage.header.getElementFromList(w, "DIFFERENT ELEMENTS");
-//        w.click();
-//    }
-
     /**
      *  6. Assert that there are 4 items on the header section are displayed and they have proper texts
      */
