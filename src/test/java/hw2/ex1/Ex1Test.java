@@ -1,6 +1,7 @@
 package hw2.ex1;
 
-import hw2.HomePage;
+import hw2.pages.HomePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -98,16 +99,28 @@ public class Ex1Test {
         loginTest.assertBrowserTitleTest();
     }
 
+//    /**
+//     *  5. Assert Browser title
+//     */
+//    @Test(priority = 6)
+//    public void MyTest() {
+//        WebElement w = homePage.header.getNavigationElement("SERVICE");
+//        System.out.println(w.getText());
+//        w.click();
+//        w = homePage.header.getElementFromList(w, "DIFFERENT ELEMENTS");
+//        w.click();
+//    }
+
     /**
      *  6. Assert that there are 4 items on the header section are displayed and they have proper texts
      */
     @Test(priority = 6)
     public void assertHeaderSectionNavigation() {
         Assert.assertEquals(
-                homePage.getHeaderSectionNavigation().size(),
+                homePage.header.getNavigation().size(),
                 navigation.size());
         Assert.assertEquals(
-                homePage.getHeaderSectionNavigation().stream().map(WebElement::getText).toArray(),
+                homePage.header.getNavigation().stream().map(WebElement::getText).toArray(),
                 navigation.toArray());
     }
 
@@ -211,5 +224,4 @@ public class Ex1Test {
     public void assertQuit() {
         homePage.quit();
     }
-
 }
