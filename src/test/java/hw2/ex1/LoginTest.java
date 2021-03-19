@@ -1,6 +1,6 @@
 package hw2.ex1;
 
-import hw2.HomePage;
+import hw2.pages.HomePage;
 import org.testng.Assert;
 
 public class LoginTest {

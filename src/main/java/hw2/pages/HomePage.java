@@ -1,5 +1,7 @@
-package hw2;
+package hw2.pages;
 
+import hw2.inner.Header;
+import hw2.inner.HomeFrame;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,11 +18,10 @@ public class HomePage {
      */
     public WebDriver driver;
 
-    Header header;
+    public Header header;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)),this);
-        //PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
         this.driver = driver;
     }
 
@@ -120,7 +121,7 @@ public class HomePage {
     }
 
     /**
-     * метод для выхода из фрейма
+     * метод для получения подзаголовка
      */
     public WebElement getSubHeader() {
         return subHeader;
@@ -166,33 +167,5 @@ public class HomePage {
      */
     public String getName() {
         return header.getName();
-    }
-
-    /**
-     * метод для нахождения 4-х навигационных элементов в хедере
-     */
-    public List<WebElement> getHeaderSectionNavigation() {
-        return header.getHeaderSectionNavigation();
-    }
-
-    /**
-     * метод для получения элемента Service из хедера
-     */
-    public WebElement getServiceTop() {
-        return header.getServiceTop();
-    }
-
-    /**
-     * метод для получения выпадающего списка Service из хедера
-     */
-    public List<WebElement> getServiceListTop() {
-        return getServiceTop().findElements(By.cssSelector(".dropdown-menu li"));
-    }
-
-    /**
-     * метод для перехода на  страницу serviceListElement в Service в хедере
-     */
-    public void goToServiceElement(String serviceListElement) {
-        header.goToServiceElement(serviceListElement);
     }
 }
