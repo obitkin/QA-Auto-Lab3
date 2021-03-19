@@ -21,7 +21,8 @@ public class LoginTest {
     }
 
     public void performLoginTest() {
-        homePage.signInWithoutClear(login,passwd);
+        homePage.header.signInWithoutClear(login,passwd);
+        Assert.assertNotEquals(homePage.header.getName(),"");
     }
 
     public void assertUserNameTest() {
