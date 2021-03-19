@@ -19,7 +19,7 @@ public class Header extends HtmlElement {
     @FindBy(id = "password")
     private WebElement passwdField;
 
-    @FindBy(id = "user-icon")
+    @FindBy(css = "ul.navbar-right")
     private WebElement loginPasswdMenu;
 
     @FindBy(id = "login-button")
@@ -28,11 +28,8 @@ public class Header extends HtmlElement {
     @FindBy(id = "user-name")
     private WebElement name;
 
-    @FindBy(css = "ul.nav>li>a")
-    private List<WebElement> navigationTop;
-
-    @FindBy(css = "ul.nav .dropdown")
-    private WebElement serviceTop;
+    @FindBy(css = "ul.nav")
+    private WebElement navigation;
 
     /**
      * метод для ввода логина
@@ -70,10 +67,10 @@ public class Header extends HtmlElement {
     }
 
     /**
-     * метод для нахождения 4-х навигационных элементов в хедере
+     * метод для получения 4-х навигационных элементов в хедере
      */
-    public List<WebElement> getHeaderSectionNavigation() {
-        return navigationTop;
+    public WebElement getNavigation() {
+        return navigation;
     }
 
     /**
@@ -87,25 +84,17 @@ public class Header extends HtmlElement {
     }
 
     /**
-     * метод для получения элемента Service из хедера
+     * метод для получения элемента из навигации хедера
+     *
+     * подходит для извлечения навигационных элементов Home, Service, Contact Form, Metal & Colors
+     * а также для извлечения элементов из выпадающего списка элементов Service
      */
-    public WebElement getServiceTop() {
-        return serviceTop;
-    }
-
-    /**
-     * метод для получения выпадающего списка Service из хедера
-     */
-    public List<WebElement> getServiceListTop() {
-        return getServiceTop().findElements(By.cssSelector(".dropdown-menu li"));
-    }
-
-    /**
-     * метод для перехода на  страницу serviceListElement в Service в хедере
-     */
-    public void goToServiceElement(String serviceListElement) {
-        getServiceTop().click();
-        //getServiceTop().findElement(By.cssSelector("a[href=\"different-elements.html\"]")).click();
-        getServiceTop().findElement(By.linkText(serviceListElement)).click();
+    public WebElement getElementFromList(WebElement List, String refNameOfElement) {
+        return List.findElement(
+                By.xpath("//a[contains(text(),\"" +
+                        refNameOfElement +
+                        "\")]/.."
+                )
+        );
     }
 }
