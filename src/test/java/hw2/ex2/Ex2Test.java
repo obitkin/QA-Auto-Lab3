@@ -1,15 +1,16 @@
 package hw2.ex2;
 
-import hw2.HomePage;
+import hw2.pages.DifferentElementsPage;
+import hw2.pages.HomePage;
 import hw2.ex1.LoginTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,10 @@ public class Ex2Test {
     List<String> serviceList = Arrays.asList("Support", "Dates", "Complex Table", "Simple Table", "Tables With Pages", "Different Elements");
 
     WebDriver driver;
+
     HomePage homePage;
+    DifferentElementsPage diffPage;
+
     LoginTest loginTest;
 
     @BeforeClass
@@ -35,7 +39,7 @@ public class Ex2Test {
         loginTest = new LoginTest(homePage);
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
     /**
@@ -76,16 +80,17 @@ public class Ex2Test {
      */
     @Test(priority = 5)
     public void assertServiceInHeader() {
-        homePage.getServiceTop().click();
+        WebElement service = homePage.header.getNavigationElement("Service");
+        service.click();
         serviceList
                 .forEach(
                         x -> Assert.assertTrue(
-                                homePage
-                                .getServiceListTop()
-                                .stream()
-                                .map(WebElement::getText)
-                                .collect(Collectors.toList())
-                                .contains(x)
+                                homePage.header
+                                        .takeElementsFromList(service)
+                                        .stream()
+                                        .map(WebElement::getText)
+                                        .collect(Collectors.toList())
+                                        .contains(x)
                         )
                 );
     }
@@ -114,8 +119,52 @@ public class Ex2Test {
      */
     @Test(priority = 7)
     public void openNewServicePage() {
-        //to do: return new DifferentElementsPage
-        homePage.goToServiceElement("Different elements");
+        diffPage = homePage.header.goTo(
+                "Service",
+                "Different elements",
+                driver,
+                DifferentElementsPage::new);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://jdi-testing.github.io/jdi-light/different-elements.html");
+    }
+
+    /**
+     *  8. Check interface on Different elements page, it contains all needed elements
+     */
+    @Test(priority = 8, timeOut = 10000)
+    public void checkMain() {
+        Assert.assertEquals(diffPage.main.getRadio().size(),4);
+        Assert.assertEquals(diffPage.main.getCheckBoxes().size(),4);
+        Assert.assertEquals(diffPage.main.getButtons().size(),2);
+        Assert.assertEquals(diffPage.main.getDropDown().size(),1);
+        //diffPage.main.getRadio().get(0).click();
+        //Assert.assertTrue(diffPage.main.getRadio().get(0).isSelected());
+    }
+
+    /**
+     *  9. Assert that there is Right Section
+     */
+    @Test(priority = 9, timeOut = 1000)
+    public void assertRightSection() {
+        Assert.assertNotNull(diffPage.rightSection);
+    }
+
+    /**
+     *  10. Assert that there is Left Section
+     */
+    @Test(priority = 10, timeOut = 1000)
+    public void assertLeftSection() {
+        Assert.assertNotNull(diffPage.leftSection);
+    }
+
+    /**
+     *  11. Select checkboxes
+     */
+    @Test(priority = 11, timeOut = 1000)
+    public void selectCheckboxes() {
+        diffPage.main.getCheckBoxes("Water").click();
+        diffPage.main.getCheckBoxes("Wind").click();
+        Assert.assertTrue(diffPage.main.getCheckBoxes("Water").isSelected());
+        Assert.assertTrue(diffPage.main.getCheckBoxes("Wind").isSelected());
     }
 
     @AfterTest
