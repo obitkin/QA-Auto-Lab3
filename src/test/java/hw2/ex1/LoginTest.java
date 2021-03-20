@@ -22,10 +22,10 @@ public class LoginTest {
 
     public void performLoginTest() {
         homePage.header.signInWithoutClear(login,passwd);
-        Assert.assertNotEquals(homePage.header.getName(),"");
+        Assert.assertNotEquals(homePage.header.getName(),""); //Useless
     }
 
     public void assertUserNameTest() {
-        Assert.assertEquals(homePage.getName(),name);
+        Assert.assertEquals(homePage.header.getName(),name);
     }
 }
