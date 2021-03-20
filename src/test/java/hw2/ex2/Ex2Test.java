@@ -222,6 +222,39 @@ public class Ex2Test {
         Assert.assertTrue(diffPage.rightSection.getLog().get(0).getText().contains("Yellow"));
     }
 
+    /**
+     *  16. Assert that for dropdown there is a log row and value is corresponded to the selected value.
+     */
+    @Test(priority = 16)
+    public void assertDropDown() {
+        for (WebElement option : diffPage.main.getDropDown().get(0).getOptions()) {
+            diffPage.main.getDropDown().get(0).selectByVisibleText(option.getText());
+            Assert.assertTrue(diffPage.rightSection.getLog().get(0).getText().contains(option.getText()));
+        }
+    }
+
+    /**
+     *  17. Unselect and assert checkboxes
+     */
+    @Test(priority = 17)
+    public void unselectCheckboxes() {
+        diffPage.main.getCheckBoxes("Water").click();
+        diffPage.main.getCheckBoxes("Wind").click();
+        diffPage.main.getCheckBoxes("Water").click();
+        diffPage.main.getCheckBoxes("Wind").click();
+        Assert.assertFalse(diffPage.main.getCheckBoxes("Water").isSelected());
+        Assert.assertFalse(diffPage.main.getCheckBoxes("Wind").isSelected());
+    }
+
+    /**
+     *  18. Assert that for each checkbox there is an individual
+     *  log row and value is corresponded to the status of checkbox.
+     */
+    @Test(priority = 18)
+    public void assertCheckbox2() {
+        assertCheckbox();
+    }
+
     @AfterTest
     public void assertQuit() {
         homePage.quit();
