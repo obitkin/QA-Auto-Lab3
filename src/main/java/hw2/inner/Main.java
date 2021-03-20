@@ -1,5 +1,6 @@
 package hw2.inner;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
@@ -9,10 +10,12 @@ import java.util.List;
 @FindBy(className = "main-content-hg")
 public class Main extends HtmlElement {
 
-    @FindBy(css = "input[type=\"checkbox\"]")
+    //@FindBy(css = "input[type=\"checkbox\"]")
+    @FindBy(className = "label-checkbox")
     private List<WebElement> checkBoxes;
 
-    @FindBy(css = "input[type=\"radio\"]")
+    //@FindBy(css = "input[type=\"radio\"]")
+    @FindBy(className = "label-radio")
     private List<WebElement> radio;
 
     @FindBy(tagName = "select")
@@ -35,5 +38,23 @@ public class Main extends HtmlElement {
 
     public List<WebElement> getButtons() {
         return buttons;
+    }
+
+    public WebElement getCheckBoxes(String label) {
+        return checkBoxes
+                .stream()
+                .filter(x -> x.getText().contains(label))
+                .findFirst()
+                .get()
+                .findElement(By.tagName("input"));
+    }
+
+    public WebElement getRadio(String label) {
+        return radio
+                .stream()
+                .filter(x -> x.getText().contains(label))
+                .findFirst()
+                .get()
+                .findElement(By.tagName("input"));
     }
 }
