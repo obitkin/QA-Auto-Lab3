@@ -3,9 +3,11 @@ package hw2.inner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @FindBy(className = "main-content-hg")
 public class Main extends HtmlElement {
@@ -32,8 +34,8 @@ public class Main extends HtmlElement {
         return radio;
     }
 
-    public List<WebElement> getDropDown() {
-        return dropDown;
+    public List<Select> getDropDown() {
+        return dropDown.stream().map(Select::new).collect(Collectors.toList());
     }
 
     public List<WebElement> getButtons() {
@@ -56,5 +58,20 @@ public class Main extends HtmlElement {
                 .findFirst()
                 .get()
                 .findElement(By.tagName("input"));
+    }
+
+    public static WebElement getInputFromLabel(WebElement label) {
+        return label.findElement(By.tagName("input"));
+    }
+
+    public void clear() {
+        getRadio()
+                .stream()
+                .filter(webElement -> getInputFromLabel(webElement).isSelected())
+                .forEach(WebElement::click);
+        getCheckBoxes()
+                .stream()
+                .filter(webElement -> getInputFromLabel(webElement).isSelected())
+                .forEach(WebElement::click);
     }
 }
