@@ -28,7 +28,10 @@ public class Header extends HtmlElement {
     private WebElement name;
 
     @FindBy(css = "ul.nav>li")
-    private List<WebElement> navigation;
+    private List<WebElement> navigationList;
+
+    @FindBy(css = "ul.nav")
+    private WebElement navigation;
 
     /**
      * метод для ввода логина
@@ -78,30 +81,33 @@ public class Header extends HtmlElement {
     /**
      * метод для получения 4-х навигационных элементов в хедере
      */
-    public List<WebElement> getNavigation() {
-        return navigation;
+    public List<WebElement> getNavigationList() {
+        return navigationList;
     }
 
     /**
-     * метод для получения 1-го из 4-х навигационных элементов в хедере
+     * метод для получения 1-го из 4-х навигационных элементов в хедере по названию
      */
     public WebElement getNavigationElement(String navigationName) {
-        return getNavigation()
-                .stream()
-                .filter(elem -> elem.getText().contains(navigationName))
-                .findFirst()
-                .get();
+        return navigation.findElement(By.cssSelector("//li/a[text()=\""+navigationName+"\"]/.."));
     }
 
     /**
-     * подходит для извлечения элементов из выпадающего списка элементов Service
+     * метод для получения всех элементов из выпадающего списка элементов навигационного элемента
+     */
+    public List<WebElement> takeElementsFromList(WebElement navigationElement) {
+        return navigationElement.findElements(By.tagName("li"));
+    }
+
+    /**
+     * метод для извлечения элементов из выпадающего списка элементов навигационного элемента
      */
     public WebElement getElementFromList(WebElement navigationElement, String refNameOfElement) {
         return navigationElement.findElement(By.linkText(refNameOfElement));
     }
 
     /**
-     * метод для получения элемента из навигации хедера и из списка
+     * метод для перехода на страницу по названию навигационного элемента и элемента из выпадающего списка(если есть)
      */
     public <Page> Page goTo(String refNameOfNavigationElement,
                             String refNameOfElement,
