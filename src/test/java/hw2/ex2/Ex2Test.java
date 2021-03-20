@@ -1,5 +1,6 @@
 package hw2.ex2;
 
+import hw2.inner.Main;
 import hw2.pages.DifferentElementsPage;
 import hw2.pages.HomePage;
 import hw2.ex1.LoginTest;
@@ -159,12 +160,66 @@ public class Ex2Test {
     /**
      *  11. Select checkboxes
      */
-    @Test(priority = 11, timeOut = 1000)
+    @Test(priority = 11)
     public void selectCheckboxes() {
         diffPage.main.getCheckBoxes("Water").click();
         diffPage.main.getCheckBoxes("Wind").click();
         Assert.assertTrue(diffPage.main.getCheckBoxes("Water").isSelected());
         Assert.assertTrue(diffPage.main.getCheckBoxes("Wind").isSelected());
+    }
+
+    /**
+     *  12. Assert that for each checkbox there is an individual log row and
+     *  value is corresponded to the status of checkbox.
+     */
+    @Test(priority = 12)
+    public void assertCheckbox() {
+        diffPage.main.clear();
+        for (WebElement checkBox : diffPage.main.getCheckBoxes()) {
+            checkBox.click();
+            Assert.assertTrue(Main.getInputFromLabel(checkBox).isSelected());
+            Assert.assertTrue(
+                    diffPage.rightSection.getLog().get(0).getText().contains(checkBox.getText()) &&
+                            diffPage.rightSection.getLog().get(0).getText().contains("true")
+                    );
+            checkBox.click();
+            Assert.assertFalse(Main.getInputFromLabel(checkBox).isSelected());
+            Assert.assertTrue(
+                    diffPage.rightSection.getLog().get(0).getText().contains(checkBox.getText()) &&
+                            diffPage.rightSection.getLog().get(0).getText().contains("false")
+            );
+        }
+    }
+
+    /**
+     *  13. Select radio
+     */
+    @Test(priority = 13)
+    public void selectRadio() {
+        diffPage.main.getRadio("Selen").click();
+        Assert.assertTrue(diffPage.main.getRadio("Selen").isSelected());
+    }
+
+    /**
+     *  14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton.
+     */
+    @Test(priority = 14)
+    public void assertRadio() {
+        diffPage.main.clear();
+        for (WebElement radio : diffPage.main.getRadio()) {
+            radio.click();
+            Assert.assertTrue(Main.getInputFromLabel(radio).isSelected());
+            Assert.assertTrue(diffPage.rightSection.getLog().get(0).getText().contains(radio.getText()));
+        }
+    }
+
+    /**
+     *  15. Select in dropdown
+     */
+    @Test(priority = 15)
+    public void selectDropDown() {
+        diffPage.main.getDropDown().get(0).selectByVisibleText("Yellow");
+        Assert.assertTrue(diffPage.rightSection.getLog().get(0).getText().contains("Yellow"));
     }
 
     @AfterTest
