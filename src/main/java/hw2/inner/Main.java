@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import ru.yandex.qatools.htmlelements.element.CheckBox;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
+import ru.yandex.qatools.htmlelements.element.Radio;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,11 +14,9 @@ import java.util.stream.Collectors;
 @FindBy(className = "main-content-hg")
 public class Main extends HtmlElement {
 
-    //@FindBy(css = "input[type=\"checkbox\"]")
     @FindBy(className = "label-checkbox")
     private List<WebElement> checkBoxes;
 
-    //@FindBy(css = "input[type=\"radio\"]")
     @FindBy(className = "label-radio")
     private List<WebElement> radio;
 
@@ -42,36 +42,45 @@ public class Main extends HtmlElement {
         return buttons;
     }
 
-    public WebElement getCheckBoxes(String label) {
-        return checkBoxes
+    public CheckBox getCheckBoxes(String label) {
+        return new CheckBox(
+                checkBoxes
                 .stream()
                 .filter(x -> x.getText().contains(label))
                 .findFirst()
                 .get()
-                .findElement(By.tagName("input"));
+                .findElement(By.tagName("input")));
     }
 
-    public WebElement getRadio(String label) {
-        return radio
+    public Radio getRadio(String label) {
+        return new Radio(
+                radio
                 .stream()
                 .filter(x -> x.getText().contains(label))
                 .findFirst()
                 .get()
-                .findElement(By.tagName("input"));
+                .findElement(By.tagName("input")));
     }
 
-    public static WebElement getInputFromLabel(WebElement label) {
+    public static WebElement getInput(WebElement label) {
         return label.findElement(By.tagName("input"));
     }
 
     public void clear() {
         getRadio()
                 .stream()
-                .filter(webElement -> getInputFromLabel(webElement).isSelected())
+                .filter(webElement -> getInput(webElement).isSelected())
                 .forEach(WebElement::click);
         getCheckBoxes()
                 .stream()
-                .filter(webElement -> getInputFromLabel(webElement).isSelected())
+                .filter(webElement -> getInput(webElement).isSelected())
                 .forEach(WebElement::click);
     }
+
+    public void checkSelf() {
+        self.isEnabled();
+    }
+
+    @FindBy(xpath = ".")
+    private WebElement self;
 }
