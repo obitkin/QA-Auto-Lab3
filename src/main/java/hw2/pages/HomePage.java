@@ -2,6 +2,7 @@ package hw2.pages;
 
 import hw2.inner.Header;
 import hw2.inner.HomeFrame;
+import hw2.inner.LeftSection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,12 +14,12 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 import java.util.List;
 
 public class HomePage {
-    /**
-     * конструктор класса, занимающийся инициализацией полей класса
-     */
+
     public WebDriver driver;
 
     public Header header;
+    public LeftSection leftSection;
+
     HomeFrame homeCentralFrame;
 
     public HomePage(WebDriver driver) {
@@ -44,14 +45,8 @@ public class HomePage {
     @FindBy(css = ".text-center a")
     private WebElement subHeader;
 
-    @FindBy(className = "sidebar-menu")
-    private WebElement sideBarMenu;
-
     @FindBy(tagName = "footer")
     private WebElement footer;
-
-    @FindBy(css = "li.menu-title[index=\"3\"]")
-    private WebElement serviceLeft;
 
     /**
      * метод для чтения заголовка страницы
@@ -120,13 +115,6 @@ public class HomePage {
     }
 
     /**
-     * метод для нахождения бокового меню
-     */
-    public WebElement getSideBarMenu() {
-        return sideBarMenu;
-    }
-
-    /**
      * метод для нахождения footer'а
      */
     public WebElement getFooter() {
@@ -138,26 +126,5 @@ public class HomePage {
      */
     public void quit() {
         driver.quit();
-    }
-
-    /**
-     * метод для получения элемента Service из левого блока
-     */
-    public WebElement getServiceLeft() {
-        return serviceLeft;
-    }
-
-    /**
-     * метод для получения выпадающего списка Service из левого блока
-     */
-    public List<WebElement> getServiceListLeft() {
-        return getServiceLeft().findElements(By.className("li"));
-    }
-
-    /**
-     * метод для чтения имени пользователя
-     */
-    public String getName() {
-        return header.getName();
     }
 }
