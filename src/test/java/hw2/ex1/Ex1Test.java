@@ -42,7 +42,9 @@ public class Ex1Test {
 
 
     private WebDriver driver;
+
     HomePage homePage;
+
     LoginTest loginTest;
 
     @BeforeClass
@@ -62,7 +64,6 @@ public class Ex1Test {
      */
     @Test(priority = 1)
     public void openSiteTest() {
-        System.setProperty("webdriver.chrome.driver", "/home/robert/IdeaProjects/AutoTestPolis/ChromeDriver/chromedriver");
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }
@@ -170,6 +171,7 @@ public class Ex1Test {
     @Test(priority = 12)
     public void getToDefault() {
         homePage.getBackFromFrameToDefault();
+        Assert.assertEquals(driver.getCurrentUrl(),url);
     }
 
     /**
@@ -192,9 +194,9 @@ public class Ex1Test {
     /**
      *  15. Assert that there is Left Section
      */
-    @Test(priority = 15)
+    @Test(priority = 15, timeOut = 1000)
     public void assertLeftSection() {
-        Assert.assertTrue(homePage.getSideBarMenu().isDisplayed());
+        Assert.assertTrue(homePage.leftSection.isDisplayed());
     }
 
     /**
