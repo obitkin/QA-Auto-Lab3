@@ -105,10 +105,10 @@ public class Ex1Test {
     @Test(priority = 6)
     public void assertHeaderSectionNavigation() {
         Assert.assertEquals(
-                homePage.header.getNavigation().size(),
+                homePage.header.getNavigationList().size(),
                 navigation.size());
         Assert.assertEquals(
-                homePage.header.getNavigation().stream().map(WebElement::getText).toArray(),
+                homePage.header.getNavigationList().stream().map(WebElement::getText).toArray(),
                 navigation.toArray());
     }
 
