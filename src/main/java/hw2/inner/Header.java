@@ -89,7 +89,7 @@ public class Header extends HtmlElement {
      * метод для получения 1-го из 4-х навигационных элементов в хедере по названию
      */
     public WebElement getNavigationElement(String navigationName) {
-        return navigation.findElement(By.cssSelector("//li/a[text()=\""+navigationName+"\"]/.."));
+        return navigation.findElement(By.xpath("//li/a[contains(text(),\""+navigationName+"\")]/.."));
     }
 
     /**
@@ -103,7 +103,12 @@ public class Header extends HtmlElement {
      * метод для извлечения элементов из выпадающего списка элементов навигационного элемента
      */
     public WebElement getElementFromList(WebElement navigationElement, String refNameOfElement) {
-        return navigationElement.findElement(By.linkText(refNameOfElement));
+        // return navigationElement.findElement(By.linkText(refNameOfElement));
+        // not working, because ref has name: DIFFERENT ELEMENTS, not Different Elements like in html
+        //return navigationElement.findElement(By.linkText(refNameOfElement.toUpperCase()));
+        //working, but horrible 1
+        return navigationElement.findElement(By.xpath("//li/a[contains(text(),\""+refNameOfElement+"\")]/.."));
+        //working, but horrible 2
     }
 
     /**
