@@ -22,4 +22,11 @@ public class RightSection extends HtmlElement {
     public List<WebElement> getResult() {
         return result;
     }
+
+    public void checkSelf() {
+        self.isEnabled();
+    }
+
+    @FindBy(xpath = ".")
+    private WebElement self;
 }

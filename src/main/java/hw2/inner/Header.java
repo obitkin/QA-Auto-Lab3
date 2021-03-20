@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 import java.util.function.Function;
@@ -125,4 +126,11 @@ public class Header extends HtmlElement {
         }
         return pageCreator.apply(driver);
     }
+
+    public void checkSelf() {
+        self.isEnabled();
+    }
+
+    @FindBy(xpath = ".")
+    private WebElement self;
 }
