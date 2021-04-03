@@ -3,7 +3,6 @@ package hw2.ex2;
 import hw2.inner.Main;
 import hw2.pages.DifferentElementsPage;
 import hw2.pages.HomePage;
-import hw2.ex1.LoginTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,25 +12,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ex2Test {
 
     String URL = "https://jdi-testing.github.io/jdi-light/index.html";
     String diffURL = "https://jdi-testing.github.io/jdi-light/different-elements.html";
     List<String> serviceList = Arrays.asList("Support", "Dates", "Complex Table", "Simple Table", "Tables With Pages", "Different Elements");
-
+    String login = "Roman";
+    String passwd = "Jdi1234";
+    String name = "ROMAN IOVLEV";
+    String title = "Home Page";
     WebDriver driver;
 
     HomePage homePage;
     DifferentElementsPage diffPage;
-
-    LoginTest loginTest;
 
     @BeforeClass
     public void setup() {
@@ -39,7 +37,6 @@ public class Ex2Test {
 
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
-        loginTest = new LoginTest(homePage);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
@@ -59,7 +56,7 @@ public class Ex2Test {
      */
     @Test(priority = 2)
     public void assertBrowserTitleTest() {
-        loginTest.assertBrowserTitleTest();
+        Assert.assertEquals(homePage.getTitle(),title);
     }
 
     /**
@@ -67,7 +64,8 @@ public class Ex2Test {
      */
     @Test(priority = 3)
     public void performLoginTest() {
-        loginTest.performLoginTest();
+        homePage.header.signInWithoutClear(login,passwd);
+        Assert.assertNotEquals(homePage.header.getName(),""); //Useless
     }
 
     /**
@@ -75,7 +73,7 @@ public class Ex2Test {
      */
     @Test(priority = 4)
     public void assertUserNameTest() {
-        loginTest.assertUserNameTest();
+        Assert.assertEquals(homePage.header.getName(),name);
     }
 
     /**

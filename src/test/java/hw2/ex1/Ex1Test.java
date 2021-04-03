@@ -16,7 +16,10 @@ import java.util.concurrent.TimeUnit;
 public class Ex1Test {
 
     String url = "https://jdi-testing.github.io/jdi-light/index.html";
-
+    String login = "Roman";
+    String passwd = "Jdi1234";
+    String name = "ROMAN IOVLEV";
+    String title = "Home Page";
 
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
     int expectedImages = 4;
@@ -45,15 +48,12 @@ public class Ex1Test {
 
     HomePage homePage;
 
-    LoginTest loginTest;
-
     @BeforeClass
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/home/robert/IdeaProjects/AutoTestPolis/ChromeDriver/chromedriver");
 
         driver = new ChromeDriver();
         homePage = new HomePage(driver);
-        loginTest = new LoginTest(homePage);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -73,7 +73,7 @@ public class Ex1Test {
      */
     @Test(priority = 2)
     public void assertBrowserTitleTest() {
-        loginTest.assertBrowserTitleTest();
+        Assert.assertEquals(homePage.getTitle(),title);
     }
 
     /**
@@ -81,7 +81,8 @@ public class Ex1Test {
      */
     @Test(priority = 3)
     public void performLoginTest() {
-        loginTest.performLoginTest();
+        homePage.header.signInWithoutClear(login,passwd);
+        Assert.assertNotEquals(homePage.header.getName(),""); //Useless
     }
 
     /**
@@ -89,7 +90,7 @@ public class Ex1Test {
      */
     @Test(priority = 4)
     public void assertUserNameTest() {
-        loginTest.assertUserNameTest();
+        Assert.assertEquals(homePage.header.getName(),name);
     }
 
     /**
@@ -97,7 +98,7 @@ public class Ex1Test {
      */
     @Test(priority = 5)
     public void assertBrowserTitleTest2() {
-        loginTest.assertBrowserTitleTest();
+        Assert.assertEquals(homePage.getTitle(),title);
     }
 
     /**
