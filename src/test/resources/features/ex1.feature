@@ -1,14 +1,14 @@
-Feature: feature file for exercise 1
+Feature: Exercise 1: check Home page elements
 
-  Background:
+  Scenario: Init
     Given I open the page
     And I log as "Roman" - "Jdi1234"
 
-  Scenario: Assert username
-    Then Username is "ROMAN IOVLEV"
-
   Scenario: Assert browser title
     Then Browser title is "Home Page"
+
+  Scenario: Assert username
+    Then Username is "ROMAN IOVLEV"
 
   Scenario: Assert header sections
     Then 4 items of header section have proper texts
