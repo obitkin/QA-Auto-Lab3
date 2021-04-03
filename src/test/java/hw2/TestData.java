@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface TestData {
-
+    String login = "Roman";
+    String passwd = "Jdi1234";
+    String name = "ROMAN IOVLEV";
+    String title = "Home Page";
+    String url = "https://jdi-testing.github.io/jdi-light/index.html";
     List<String> navigation = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
     int expectedImages = 4;
     List<String> textOfImages = Arrays.asList(
@@ -26,6 +30,4 @@ public interface TestData {
             "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
     String subHeader = "JDI GITHUB";
     String JDI_GITHUB_URL = "https://jdi-testing.github.io/jdi-light/index.html";
-    String name = "ROMAN IOVLEV";
-    String title = "Home Page";
 }
