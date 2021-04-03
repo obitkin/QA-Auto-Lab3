@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class Ex2Test {
+public class Ex2TestSteps {
 
     String URL = "https://jdi-testing.github.io/jdi-light/index.html";
     String diffURL = "https://jdi-testing.github.io/jdi-light/different-elements.html";
