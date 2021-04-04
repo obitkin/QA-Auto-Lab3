@@ -1,9 +1,10 @@
-package hw2.steps;
+package hw3.steps;
 
-import hw2.util.TestData;
-import hw2.inner.Main;
-import hw2.pages.DifferentElementsPage;
-import hw2.pages.HomePage;
+import hw3.util.ConfProperties;
+import hw3.util.TestData;
+import hw3.inner.Main;
+import hw3.pages.DifferentElementsPage;
+import hw3.pages.HomePage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -14,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -30,26 +30,34 @@ public class StepDef implements TestData {
 
     @Before
     public void setup() {
-
-    }
-
-    @Given("I open the page")
-    public void openSiteTest() {
-        System.setProperty("webdriver.chrome.driver", "/home/robert/IdeaProjects/AutoTestPolis/ChromeDriver/chromedriver");
+        System.setProperty("webdriver.chrome.driver", ConfProperties.get("driver"));
 
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @When("I open the home page")
+    public void openSiteTest() {
         driver.get(url);
         homePage = new HomePage(driver);
+    }
+
+    @Then("Home page is opened")
+    public void checkOpenSiteTest() {
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }
 
-    @And("I log as {string} - {string}")
+    @When("I log as {string} - {string}")
     public void performLoginTest(String login, String password) {
         homePage.header.signInWithoutClear(login, password);
-        Assert.assertNotEquals(homePage.header.getName(),""); //Useless
+        Assert.assertNotEquals(homePage.header.getName(),"");
+    }
+
+    @Then("Username is not null")
+    public void checkLoginTest() {
+        Assert.assertNotEquals(homePage.header.getName(),"");
     }
 
     @Then("Browser title is {string}")
@@ -80,7 +88,7 @@ public class StepDef implements TestData {
         homePage.getImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
     }
 
-    @Then("Texts blow images are displayed")
+    @Then("Texts block images are displayed")
     public void assertTextOfImages() {
         Assert.assertEquals(
                 homePage.getTextOfImages().size(),
@@ -88,7 +96,7 @@ public class StepDef implements TestData {
         homePage.getTextOfImages().forEach(x -> Assert.assertTrue(x.isDisplayed()));
     }
 
-    @And("They have proper text")
+    @And("Blocks have proper text")
     public void assertTextOfImages2() {
         Assert.assertEquals(
                 homePage.getTextOfImages().stream().map(WebElement::getText).toArray(),
@@ -200,28 +208,28 @@ public class StepDef implements TestData {
         Assert.assertEquals(driver.getCurrentUrl(),diffURL);
     }
 
-    @Then("There are 4 radios")
+    @And("There are 4 radios")
     public void checkMainRadios() {
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(diffPage.main.getRadio().size(),4);
         softAssertion.assertAll();
     }
 
-    @Then("There are 4 checkboxes")
+    @And("There are 4 checkboxes")
     public void checkMainCheckboxes() {
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(diffPage.main.getCheckBoxes().size(),4);
         softAssertion.assertAll();
     }
 
-    @Then("There are 1 dropdown")
+    @And("There are 1 dropdown")
     public void checkMainDropdown() {
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(diffPage.main.getDropDown().size(),1);
         softAssertion.assertAll();
     }
 
-    @Then("There are 2 buttons")
+    @And("There are 2 buttons")
     public void checkMainButtons() {
         SoftAssert softAssertion = new SoftAssert();
         softAssertion.assertEquals(diffPage.main.getButtons().size(),2);

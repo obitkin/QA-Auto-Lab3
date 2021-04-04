@@ -1,8 +1,10 @@
 Feature: Exercise 2: check page elements and
 
-  Background:
-    Given I open the page
-    And I log as "Roman" - "Jdi1234"
+  Background: Init
+    When I open the home page
+    Then Home page is opened
+    When I log as "Roman" - "Jdi1234"
+    Then Username is not null
 
   Scenario: Assert browser title
     Then Browser title is "Home Page"
@@ -19,10 +21,10 @@ Feature: Exercise 2: check page elements and
   Scenario: Assert elements
     Given Open "Different elements" Page
     Then Check current URL
-    Then There are 4 radios
-    Then There are 4 checkboxes
-    Then There are 1 dropdown
-    Then There are 2 buttons
+    And  There are 4 radios
+    And  There are 4 checkboxes
+    And  There are 1 dropdown
+    And  There are 2 buttons
 
   Scenario: Assert Right and Left Section
     Given Open "Different elements" Page

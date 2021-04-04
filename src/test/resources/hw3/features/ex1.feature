@@ -1,8 +1,10 @@
 Feature: Exercise 1: check Home page elements
 
   Background: Init
-    Given I open the page
-    And I log as "Roman" - "Jdi1234"
+    When I open the home page
+    Then Home page is opened
+    When I log as "Roman" - "Jdi1234"
+    Then Username is not null
 
   Scenario: Assert browser title
     Then Browser title is "Home Page"
@@ -17,8 +19,8 @@ Feature: Exercise 1: check Home page elements
     Then Images are displayed
 
   Scenario: Assert texts below images
-    Then Texts blow images are displayed
-    And They have proper text
+    Then Texts block images are displayed
+    And Blocks have proper text
 
   Scenario: Assert main header
     Then First paragraph of main header has proper text
