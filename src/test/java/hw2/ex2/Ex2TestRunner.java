@@ -6,13 +6,13 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = {"src/test/resources/features/ex2.feature"},
-        glue = {"hw2.ex2"},
+        glue = {"hw2.steps"},
         tags = ""
 )
 public class Ex2TestRunner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
