@@ -1,4 +1,4 @@
-# QA-Auto-Lab2
+# QA-Auto-Lab3
 
 **mvn -Pex1 test** 
 
