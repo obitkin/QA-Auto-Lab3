@@ -70,7 +70,7 @@
             <version>2.22.1</version>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>src/test/resources/testEX1.xml</suiteXmlFile>
+                <suiteXmlFile>src/test/resources/hw3/testEX1.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
@@ -86,7 +86,7 @@
             <version>2.22.1</version>
             <configuration>
               <suiteXmlFiles>
-                <suiteXmlFile>src/test/resources/testEX2.xml</suiteXmlFile>
+                <suiteXmlFile>src/test/resources/hw3/testEX2.xml</suiteXmlFile>
               </suiteXmlFiles>
             </configuration>
           </plugin>
