@@ -25,12 +25,12 @@ Feature: Exercise 2: check page elements and
     Then There are 2 buttons
 
   Scenario: Assert Right and Left Section
-    Given Open "Different Elements" Page
+    Given Open "Different elements" Page
     Then Right Section displayed
     And Left Section displayed
 
   Scenario: Select checkboxes
-    Given Open "Different Elements" Page
+    Given Open "Different elements" Page
     When Select checkboxes "Water" and "Wind"
     Then Checkboxes "Water" and "Wind" are selected
     And Status of checkboxes in Log row are displayed and corresponding
@@ -38,16 +38,13 @@ Feature: Exercise 2: check page elements and
     And Status of checkboxes in Log row are displayed and corresponding
 
   Scenario: Select radio
-    Given Open "Different Elements" Page
+    Given Open "Different elements" Page
     When Click "Selen" radio
     Then Radio "Selen" is selected
     And Status of radios in Log row is displayed and corresponding
 
   Scenario: Select in dropdown
-    Given Open "Different Elements" Page
+    Given Open "Different elements" Page
     When Select "Yellow" in dropdown
     Then "Yellow" in dropdown is selected
     And Status of dropdown in Log row is displayed and corresponding
-
-  Scenario: Close browser
-    Then Close browser
