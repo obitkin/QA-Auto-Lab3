@@ -1,4 +1,4 @@
-package hw2;
+package hw2.util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,4 +30,8 @@ public interface TestData {
             "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
     String subHeader = "JDI GITHUB";
     String JDI_GITHUB_URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    String URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    String diffURL = "https://jdi-testing.github.io/jdi-light/different-elements.html";
+    List<String> serviceList = Arrays.asList("Support", "Dates", "Complex Table", "Simple Table", "Tables With Pages", "Different Elements");
+
 }
