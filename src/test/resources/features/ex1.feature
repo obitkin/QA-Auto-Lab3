@@ -1,6 +1,6 @@
 Feature: Exercise 1: check Home page elements
 
-  Scenario: Init
+  Background: Init
     Given I open the page
     And I log as "Roman" - "Jdi1234"
 
@@ -42,6 +42,3 @@ Feature: Exercise 1: check Home page elements
 
   Scenario: Assert Footer
     Then Footer exists
-
-  Scenario: Close browser
-    Then Close browser
