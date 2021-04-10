@@ -1,11 +1,10 @@
-package hw2.inner;
+package hw3.inner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
-import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.List;
 import java.util.function.Function;

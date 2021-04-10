@@ -1,4 +1,4 @@
-package hw2.inner;
+package hw3.inner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

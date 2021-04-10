@@ -1,8 +1,8 @@
-package hw2.pages;
+package hw3.pages;
 
-import hw2.inner.LeftSection;
-import hw2.inner.Main;
-import hw2.inner.RightSection;
+import hw3.inner.LeftSection;
+import hw3.inner.Main;
+import hw3.inner.RightSection;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
