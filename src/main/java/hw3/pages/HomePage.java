@@ -1,8 +1,8 @@
-package hw2.pages;
+package hw3.pages;
 
-import hw2.inner.Header;
-import hw2.inner.HomeFrame;
-import hw2.inner.LeftSection;
+import hw3.inner.Header;
+import hw3.inner.HomeFrame;
+import hw3.inner.LeftSection;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
