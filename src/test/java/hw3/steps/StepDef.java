@@ -14,6 +14,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -31,10 +32,14 @@ public class StepDef implements TestData {
     @Before
     public void setup() {
         System.setProperty("webdriver.chrome.driver", ConfProperties.get("driver"));
-
-        driver = new ChromeDriver();
-
-        driver.manage().window().maximize();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(List.of(
+                "--no-sandbox",
+                "--start-maximized",
+                "--headless",            //should be enabled for Jenkins
+                "--disable-dev-shm-usage"//should be enabled for Jenkins
+        ));
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
